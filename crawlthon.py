@@ -10,7 +10,10 @@ logging.basicConfig(
 )
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm crawlthon bot! this is the dungeon crowl game bot")
+
+async def ping(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text("PONG")
 
 def main():
     load_dotenv()
@@ -19,6 +22,11 @@ def main():
     application = ApplicationBuilder().token(BOT_TOKEN).build()
     start_handler = CommandHandler('start', start)
     application.add_handler(start_handler)
+
+    ping_handler = CommandHandler('PING', ping)
+    application.add_handler(ping_handler)
+    
+
     
     application.run_polling()
 
